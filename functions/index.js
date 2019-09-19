@@ -19,7 +19,6 @@ exports.sendNotification = functions.database.ref('/washing_machine/{washing_mac
 
         var machineSnapshot = change.after.val();
         const washing_machine_id =  context.params.washing_machine_id
-//        const status_id =  context.params.washing_machine_id
         const status_id = machineSnapshot.status_id
 
          if (status_id !== "3" && status_id !== "4") {

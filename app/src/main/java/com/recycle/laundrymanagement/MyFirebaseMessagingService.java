@@ -63,15 +63,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String status_type  = remoteMessage.getData().get("status_type");
 //        String user_email  = remoteMessage.getData().get("user_email");
 
-        String noticeText = "Machine Available";
+        String noticeTitle = " ";
+        String noticeText = " ";
 
-        Log.d(TAG, "\nstatus_id = " + status_id);
+//        Log.d(TAG, "\nstatus_id = " + status_id);
 
         switch (status_id) {
-            case "3": noticeText = "Laundry Finished!";
-            break;
-            case "4": noticeText = "Your Laundry is Over Timed!";
-            break;
+            case "3": noticeTitle = "Laundry Finished";
+                noticeText = "Your clothes are ready for pickup.";
+                break;
+            case "4": noticeTitle = "Laundry Over Timed";
+                noticeText = "Please pickup your clothes as soon as possible!";
+                break;
             default: break;
         }
 
@@ -101,7 +104,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.washing_machine)
-                .setContentTitle(status_type)
+                .setContentTitle(noticeTitle)
                 .setAutoCancel(true)
                 .setSound(defaultSound)
 //                .setLargeIcon(icon)
